@@ -22,8 +22,13 @@ def stations_by_distance(stations, p):
     stations_distance = list(zip(stations, distance))
     stations_distance = utils.sorted_by_key(stations_distance, 0)
     return stations_distance
-    
-     
-def rivers_with_station(stations):
-      
+
+
+def stations_within_radius(stations, centre, r):
+    '''Return a list of all monitoring stations within a radius r of the centre co-ordinate'''
+    out = []
+    for station in stations:
+        if haversine(station.coord, centre) <= r:
+            out.append(station)
+    return out
     
