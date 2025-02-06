@@ -7,7 +7,7 @@ geographical data.
 """
 
 
-import utils # noqa
+from .utils import sorted_by_key # noqa
 from haversine import haversine
 
 
@@ -24,7 +24,7 @@ def stations_by_distance(stations, p):
         name.append(stations[i].name)
         town.append(stations[i].town)
     stations_distance = list(zip(name, town, distance))
-    stations_distance = utils.sorted_by_key(stations_distance, 2)
+    stations_distance = sorted_by_key(stations_distance, 2)
     stations_distance = stations_distance[:10]
 
     return stations_distance
@@ -37,3 +37,30 @@ def stations_within_radius(stations, centre, r):
         if haversine(station.coord, centre) <= r:
             out.append(station)
     return out
+
+
+def rivers_with_station(stations):
+    rivers = []
+    for i in range(len(stations)):
+        if stations[i].river not in rivers:
+            rivers.append(stations[i].river)
+        else:
+            pass
+    rivers.sort()
+    return rivers
+
+
+def stations_by_rivers(stations):
+    test = {}
+    for i in range(len(stations)):
+        if stations[i].river not in test:
+            test[stations[i].river] = []
+        test[stations[i].river].append(stations[i].name)
+    return test
+           
+            
+
+            
+        
+        
+
