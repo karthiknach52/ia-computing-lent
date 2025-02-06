@@ -58,3 +58,9 @@ def stations_by_river(stations):
             test[stations[i].river] = []
         test[stations[i].river].append(stations[i].name)
     return test
+
+
+def rivers_by_station_number(stations, N):
+    river_dict = stations_by_river(stations)
+    rivers = [(river, len(river_dict[river])) for river in river_dict]
+    return sorted(rivers, key=lambda x: x[1], reverse=True)[:N]
