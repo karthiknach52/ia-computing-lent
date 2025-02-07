@@ -25,3 +25,7 @@ def test_create_monitoring_station():
     assert s.typical_range == trange
     assert s.river == river
     assert s.town == town
+
+# NEED TO IMPLEMENT TESTS FOR:
+# typical_range_consistent()
+# inconsistent_typical_range_station()

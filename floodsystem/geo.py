@@ -61,6 +61,12 @@ def stations_by_river(stations):
 
 
 def rivers_by_station_number(stations, N):
+    '''Returns the N rivers with the most stations'''
     river_dict = stations_by_river(stations)
     rivers = [(river, len(river_dict[river])) for river in river_dict]
-    return sorted(rivers, key=lambda x: x[1], reverse=True)[:N]
+    sorted_rivers = sorted(rivers, key=lambda x: x[1], reverse=True)[:N]
+    out = sorted_rivers[N:]
+    i = 1
+    while N - i >= 0 and sorted_rivers[N - i] == sorted_rivers[i]:
+        out.append(sorted_rivers[N - i])
+        i += 1
