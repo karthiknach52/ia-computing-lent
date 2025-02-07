@@ -4,6 +4,7 @@
 """Unit test for the station module"""
 
 from floodsystem.station import MonitoringStation
+from floodsystem.station import inconsistent_typical_range_stations
 
 
 def test_create_monitoring_station():
@@ -26,6 +27,19 @@ def test_create_monitoring_station():
     assert s.river == river
     assert s.town == town
 
-# NEED TO IMPLEMENT TESTS FOR:
-# typical_range_consistent()
-# inconsistent_typical_range_station()
+
+def test_no_typical_range():
+    '''Check that a missing typical range leads to marking as inconsistent'''
+    # Station where the typical range is None
+    assert not MonitoringStation("s_id", "m_id", "label", (0, 0), None, "river", "town").typical_range_consistent()
+
+
+def test_nonsense_typical_range():
+    '''Check that a nonsense typical range leads to marking as inconsistent'''
+    # Station where the typical range high is lower than the low
+    assert not MonitoringStation("s_id", "m_id", "label", (0, 0), (1, -1), "river", "town").typical_range_consistent()
+
+
+def test_inconsistent_typical_range_empty_input():
+    '''Check that an empty list returns an empty list'''
+    assert inconsistent_typical_range_stations([]) == []
