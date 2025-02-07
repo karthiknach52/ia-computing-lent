@@ -3,10 +3,8 @@ from floodsystem.station import MonitoringStation
 
 
 def test_stations_by_distance_empty_input():
-    # DOCSTRING
+    '''Check that an empty list returns an empty list'''
     assert geo.stations_by_distance([], (0, 0)) == []
-    # if p != (float, float):
-    #     raise ValueError("p should be a tuple of floats")
 
 
 def test_check_stations_in_radius():
@@ -28,9 +26,14 @@ def test_check_stations_in_radius_empty_input():
     assert geo.stations_within_radius([], (0, 0), 10) == []
 
 
-# NEED TO IMPLEMENT TESTS FOR:
-# rivers_withs_station()
-# stations_by_river()
+def test_rivers_with_stations_empty_input():
+    '''Check that an empty list returns an empty set'''
+    assert geo.rivers_with_station([]) == set()
+
+
+def test_stations_by_river_empty_input():
+    '''Check that an empty list returns an empty dictionary'''
+    assert geo.stations_by_river([]) == {}
 
 
 def test_rivers_by_station_number_empty_input():

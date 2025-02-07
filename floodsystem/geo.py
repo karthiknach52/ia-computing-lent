@@ -12,7 +12,7 @@ from haversine import haversine
 
 
 def stations_by_distance(stations, p):
-    # ADD DOCSTRING
+    '''Return a list of stations sorted by distances'''
     distance = []
     name = []
     town = []
@@ -36,22 +36,29 @@ def stations_within_radius(stations, centre, r):
     return out
 
 
+# def rivers_with_station(stations):
+#     # ADD DOCSTRING
+#     # Code could be simplified by using a set
+#     rivers = []
+#     for i in range(len(stations)):
+#         if stations[i].river not in rivers:
+#             rivers.append(stations[i].river)
+#         else:
+#             pass
+#     rivers.sort()
+#     return rivers
+
+
 def rivers_with_station(stations):
-    # ADD DOCSTRING
-    # Code could be simplified by using a set
-    rivers = []
-    for i in range(len(stations)):
-        if stations[i].river not in rivers:
-            rivers.append(stations[i].river)
-        else:
-            pass
-    rivers.sort()
+    '''Return all the rivers that have at least 1 station '''
+    rivers = set()
+    for station in stations:
+        rivers.add(station.river)
     return rivers
 
 
 def stations_by_river(stations):
-    # ADD DOCSTRING
-    # Code could be simplified by using the function defined above
+    '''Return a dictionary that maps all the rivers to the stations on it'''
     test = {}
     for i in range(len(stations)):
         if stations[i].river not in test:

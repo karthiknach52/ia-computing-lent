@@ -3,7 +3,12 @@ from floodsystem.geo import rivers_with_station
 from floodsystem.geo import stations_by_river
 
 if __name__ == "__main__":
-    # THIS IS NOT COMPLETE
     stations = build_station_list()
-    River_Cam_stations = sorted(stations_by_river(stations)['River Cam'])
-    print(River_Cam_stations)
+
+    rivers = list(rivers_with_station(build_station_list()))
+    rivers.sort()
+    print(rivers[:10])
+
+    print(sorted(stations_by_river(stations)['River Cam']))
+    print(sorted(stations_by_river(stations)['River Aire']))
+    print(sorted(stations_by_river(stations)['River Thames']))
