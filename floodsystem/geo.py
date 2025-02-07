@@ -11,16 +11,13 @@ from .utils import sorted_by_key # noqa
 from haversine import haversine
 
 
-def calculate_distance(p, coordinates):
-    return haversine(p, coordinates)
-
-
 def stations_by_distance(stations, p):
+    # ADD DOCSTRING
     distance = []
     name = []
     town = []
     for i in range(len(stations)):
-        distance.append(calculate_distance(stations[i].coord, p))
+        distance.append(haversine(stations[i].coord, p))
         name.append(stations[i].name)
         town.append(stations[i].town)
     stations_distance = list(zip(name, town, distance))
@@ -40,6 +37,8 @@ def stations_within_radius(stations, centre, r):
 
 
 def rivers_with_station(stations):
+    # ADD DOCSTRING
+    # Code could be simplified by using a set
     rivers = []
     for i in range(len(stations)):
         if stations[i].river not in rivers:
@@ -50,17 +49,26 @@ def rivers_with_station(stations):
     return rivers
 
 
-def stations_by_rivers(stations):
+def stations_by_river(stations):
+    # ADD DOCSTRING
+    # Code could be simplified by using the function defined above
     test = {}
     for i in range(len(stations)):
         if stations[i].river not in test:
             test[stations[i].river] = []
         test[stations[i].river].append(stations[i].name)
     return test
-           
-            
 
-            
-        
-        
 
+def rivers_by_station_number(stations, N):
+    '''Returns the N rivers with the most stations'''
+    river_dict = stations_by_river(stations)
+    rivers = [(river, len(river_dict[river])) for river in river_dict]
+    sorted_rivers = sorted(rivers, key=lambda x: x[1], reverse=True)
+    out = sorted_rivers[:N]
+
+    # Add rivers if they have the same number of stations as the Nth river
+    while len(out) < len(sorted_rivers) and sorted_rivers[len(out)][1] == sorted_rivers[N - 1][1]:
+        out.append(sorted_rivers[len(out)])
+
+    return out
