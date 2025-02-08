@@ -36,19 +36,6 @@ def stations_within_radius(stations, centre, r):
     return out
 
 
-# def rivers_with_station(stations):
-#     # ADD DOCSTRING
-#     # Code could be simplified by using a set
-#     rivers = []
-#     for i in range(len(stations)):
-#         if stations[i].river not in rivers:
-#             rivers.append(stations[i].river)
-#         else:
-#             pass
-#     rivers.sort()
-#     return rivers
-
-
 def rivers_with_station(stations):
     '''Return all the rivers that have at least 1 station '''
     rivers = set()
