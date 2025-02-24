@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from matplotlib import dates
+import matplotlib
 
 
 def plot_water_levels(station, dates, levels):
@@ -12,8 +12,8 @@ def plot_water_levels(station, dates, levels):
     plt.show()
 
 
-def plot_water_level_with_fit(station, date, levels, p):
-    time = dates.date2num(dates)
+def plot_water_level_with_fit(station, dates, levels, p):
+    time = matplotlib.dates.date2num(dates)
     plt.plot(time, levels)
     plt.plot(time, p(time - time[0]))
     plt.xlabel('dates')
