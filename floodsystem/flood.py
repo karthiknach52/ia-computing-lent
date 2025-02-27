@@ -2,6 +2,7 @@ from .stationdata import update_water_levels
 
 
 def stations_level_over_threshold(stations, tol):
+    '''Returns a list of stations and their relative water levels if they are higher than the threshold'''
     out = []
     update_water_levels(stations)
     for station in stations:
@@ -13,6 +14,7 @@ def stations_level_over_threshold(stations, tol):
 
 
 def stations_highest_rel_level(stations, N):
+    '''Returns a list of the N stations with the highest relative water level'''
     out = []
     update_water_levels(stations)
     for station in stations:
