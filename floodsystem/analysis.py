@@ -8,4 +8,3 @@ def polyfit(dates, levels, p):
     p_coeff = np.polyfit(x - x[0], levels, p)
     poly = np.poly1d(p_coeff)
     return poly, x[0]
-    

@@ -1,11 +1,13 @@
 import matplotlib.pyplot as plt
-import matplotlib
+from matplotlib.dates import date2num
 
 # NEEDS DOCSTRINGS AND HIGH AND LOW NEED TO BE UPDATED
 
 
 def plot_water_levels(station, dates, levels):
     '''Plot the relative water level against dates'''
+    if len(dates) != len(levels):
+        raise ValueError("Dates and levels are different lengths")
     plt.axhline(y=0.0, color='r', linestyle='dotted')
     plt.axhline(y=1.0, color='y', linestyle='dotted')
     plt.plot(dates, levels)
@@ -19,7 +21,9 @@ def plot_water_levels(station, dates, levels):
 
 def plot_water_level_with_fit(station, dates, levels, p):
     '''Plot the relative water level along with the least square fit polynomial against dates'''
-    time = matplotlib.dates.date2num(dates)
+    time = date2num(dates)
+    if len(dates) != len(levels):
+        raise ValueError("Dates and levels are different lengths")
     plt.axhline(y=0.0, color='r', linestyle='dotted')
     plt.axhline(y=1.0, color='y', linestyle='dotted')
     plt.plot(time, levels, 'o')
