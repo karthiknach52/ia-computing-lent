@@ -8,7 +8,7 @@ from datetime import timedelta
 def level_rising(station):
     '''Determine whether the level at a station is rising or fallng'''
     dates, levels = fetch_measure_levels(station.measure_id, dt=timedelta(days=2))
-    poly, d0 = polyfit(dates, levels, 4)
+    poly = polyfit(dates, levels, 4)
     if poly.deriv()(0) > 0:
         return True
     else:

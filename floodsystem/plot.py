@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import matplotlib
 
+# NEEDS DOCSTRINGS AND HIGH AND LOW NEED TO BE UPDATED
+
 
 def plot_water_levels(station, dates, levels):
     plt.axhline(y=0.0, color='r', linestyle='dotted')
