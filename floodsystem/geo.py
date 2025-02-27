@@ -66,3 +66,13 @@ def rivers_by_station_number(stations, N):
         out.append(sorted_rivers[len(out)])
 
     return out
+
+
+def stations_by_towns(stations):
+    '''Return a dictionary that maps all the towns to the stations on it'''
+    test = {}
+    for i in range(len(stations)):
+        if stations[i].town not in test:
+            test[stations[i].town] = []
+        test[stations[i].town].append(stations[i])
+    return test
