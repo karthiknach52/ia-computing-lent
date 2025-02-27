@@ -5,6 +5,7 @@ import matplotlib
 
 
 def plot_water_levels(station, dates, levels):
+    '''Plot the relative water level against dates'''
     plt.axhline(y=0.0, color='r', linestyle='dotted')
     plt.axhline(y=1.0, color='y', linestyle='dotted')
     plt.plot(dates, levels)
@@ -17,6 +18,7 @@ def plot_water_levels(station, dates, levels):
 
 
 def plot_water_level_with_fit(station, dates, levels, p):
+    '''Plot the relative water level along with the least square fit polynomial against dates'''
     time = matplotlib.dates.date2num(dates)
     plt.axhline(y=0.0, color='r', linestyle='dotted')
     plt.axhline(y=1.0, color='y', linestyle='dotted')
