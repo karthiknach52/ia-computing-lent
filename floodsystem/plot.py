@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
-from matplotlib.dates import date2num
-
-# NEEDS DOCSTRINGS AND HIGH AND LOW NEED TO BE UPDATED
+from matplotlib.dates import date2num, num2date
 
 
 def plot_water_levels(station, dates, levels):
@@ -26,8 +24,8 @@ def plot_water_level_with_fit(station, dates, levels, p):
         raise ValueError("Dates and levels are different lengths")
     plt.axhline(y=0.0, color='r', linestyle='dotted')
     plt.axhline(y=1.0, color='y', linestyle='dotted')
-    plt.plot(time, levels, 'o')
-    plt.plot(time, p(time - time[0]), 'b')
+    plt.plot(num2date(time), levels, 'o')
+    plt.plot(num2date(time), p(time - time[0]), 'b')
     plt.xlabel('dates')
     plt.ylabel('water level')
     plt.xticks(rotation=45)
